@@ -165,14 +165,8 @@ int main(int argc, char *argv[]) {
 	}
 
 	char* encoded_str = convert_to_base64(size, argv[1]);
-	int count;
 
-	while (encoded_str[count] != 0x0) {
-		printf("%c", encoded_str[count]);
-		count++;
-	}
-
-	printf("\n");
+	printf("%s\n", encoded_str);
 
 	return 0;
 }
