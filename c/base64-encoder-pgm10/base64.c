@@ -12,10 +12,10 @@
 // Various shifts to move base64 standard codes to ascii
 uint8_t ascii_from_base64(uint8_t code) {
   
-       	if (code <= 25)
+	if (code <= 25)
   		return code + 65;
  
-        if (code >= 26 && code <= 51)
+    	if (code >= 26 && code <= 51)
          	return code + 71;
  
 	if (code >= 52 && code <= 61)
@@ -50,7 +50,7 @@ char* convert_to_base64(int size, void* ptr) {
 	int counted_encoded_bytes = 0;
 	int counted_bytes = 0;	
 
-	for (int i = 0; i < calc_size / 3; i ++) {
+	for (int i = 0; i < calc_size; i+= 3) {
 
 		int remainder = calc_size - size;
 
@@ -96,7 +96,7 @@ char* convert_to_base64(int size, void* ptr) {
 		 *
 		 * So we need our output to be [00][0110]
 		 *
-		 * To accomplish this we will need to "and" the bytes together, but to do that the
+		 * To accomplish this we will need to "or" the bytes together, but to do that the
 		 * sets of bits we need have to be positioned correctly. We will do this using shifts and masks.
 		 * For the H, we need our 00 to line up in bits 5 and 6. Using the << operator we can easily accomplish this
 		 *
@@ -144,7 +144,7 @@ char* convert_to_base64(int size, void* ptr) {
 		encoded_str[counted_encoded_bytes++] = (char)ascii_from_base64(code);
 
 		counted_bytes += 3; // increment counted bytes
-
+		
 		if (counted_bytes < size)
 			byte_arr = &byte_arr[3]; // shift our pointer past the 3 bytes we just encoded
 
