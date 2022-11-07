@@ -51,8 +51,8 @@ char* convert_to_base64(int size, void* ptr) {
 	int counted_bytes = 0;	
 
 	for (int i = 0; i < calc_size / 3; i ++) {
-		int remainder = calc_size - size;
 
+		int remainder = calc_size - size;
 
 		/*
 		 * The below line of code starts with our first byte. Let's assume it is the ascii value H, whose decimal value is 72,
