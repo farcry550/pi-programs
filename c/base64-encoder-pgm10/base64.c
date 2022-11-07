@@ -38,8 +38,9 @@ char* convert_to_base64(int size, void* ptr) {
 	
 	int calc_size = size % 3 == 0 ? size : size + (3 - (size % 3));
 	int encoded_str_size = (float)calc_size * 1.334f;
+	int remainder = calc_size - size;
 
-	char* encoded_str  = malloc(encoded_str_size + 1);
+	char* encoded_str  = (char*)malloc(encoded_str_size + 1);
 	char base64_char;
 	
 	uint8_t* byte_arr = (uint8_t*)ptr;
@@ -51,8 +52,6 @@ char* convert_to_base64(int size, void* ptr) {
 	int counted_bytes = 0;	
 
 	for (int i = 0; i < calc_size; i+= 3) {
-
-		int remainder = calc_size - size;
 
 		/*
 		 * The below line of code starts with our first byte. Let's assume it is the ascii value H, whose decimal value is 72,
